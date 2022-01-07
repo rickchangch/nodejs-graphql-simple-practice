@@ -34,7 +34,9 @@ app.get('/users/:id', function(req, resp) {
   // show path params
   console.log(req.params);
 
-  resp.status(200).send(userList[req.params.id] || {});
+  let id = req.params.id || '';
+
+  resp.status(200).send(userList[id] || {});
 });
 
 // list
@@ -46,7 +48,7 @@ app.get('/users', function(req, resp) {
 app.post('/users', function(req, resp) {
 
   // get body params
-  let bodyParams = req.body;
+  let bodyParams = req.body || {};
 
   // append to userList
   userList.push(bodyParams);
@@ -55,12 +57,10 @@ app.post('/users', function(req, resp) {
 });
 
 // update
-app.put('/users/:id', function(req, resp) {
+app.patch('/users/:id', function(req, resp) {
 
-  // get resource ID
-  let id = req.params.id;
-  // get body params
-  let bodyParams = req.body;
+  let id = req.params.id || '';
+  let bodyParams = req.body || {};
 
   // updated
   userList[id] = bodyParams;
@@ -70,6 +70,8 @@ app.put('/users/:id', function(req, resp) {
 
 // delete
 app.delete('/users/:id', function(req, resp) {
+
+  let id = req.params.id || '';
 
   // remove from userList
   userList.splice(req.params.id, 1);
