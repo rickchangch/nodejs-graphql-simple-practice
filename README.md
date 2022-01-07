@@ -1,5 +1,5 @@
-# nodejs-practice
-
+# Simple Practice for GraphQL and REST API using NodeJS
+There is a simple practice to present that how to fetch specific data set from REST API through requesting the GraphQL API gateway.
 ## Folder structure
 ```
     .
@@ -15,15 +15,16 @@
 ```
 
 ## Usage
-- activate REST API server
+- Activate REST API server.
 ```
 node rest_api_server/index.js
 ```
-- activate GraphQL API gateway server
+- Activate GraphQL API gateway server.
 ```
 node graphql_api_gateway/index.js
 ```
-- GraphQL query language
+- Samples of GraphQL query language.
+  - [apollo server sandbox](https://studio.apollographql.com/sandbox/explorer)
   - Get
     ```
     query GetUser($userId: ID) {
@@ -33,13 +34,6 @@ node graphql_api_gateway/index.js
         age
       }
     }
-
-    OR
-
-    curl --request POST \
-      --header 'content-type: application/json' \
-      --url http://localhost:4000/ \
-      --data '{"query":"query GetUser($userId: ID) {\n  user(id: $userId) {\n    __typename\n    name\n    age\n  }\n}","variables":{"userId":"0"}}'
     ```
   - List
     ```
@@ -50,13 +44,6 @@ node graphql_api_gateway/index.js
         __typename
       }
     }
-
-    OR
-
-    curl --request POST \
-      --header 'content-type: application/json' \
-      --url http://localhost:4000/ \
-      --data '{"query":"query GetUsers {\r\n  users {\r\n    age\r\n    name\r\n    __typename\r\n  }\r\n}"}'
     ```
 
   - Create
@@ -64,37 +51,16 @@ node graphql_api_gateway/index.js
     mutation AddUser($name: String, $age: Int) {
       addUser(name: $name, age: $age)
     }
-
-    OR
-
-    curl --request POST \
-      --header 'content-type: application/json' \
-      --url http://localhost:4000/ \
-      --data '{"query":"mutation AddUser($name: String, $age: Int) {\r\n  addUser(name: $name, age: $age)\r\n}","variables":{"name":"FOx","age":11}}'
     ```
   - Update
     ```
     mutation UpdateUser($id: ID, $name: String, $age: Int) {
       updateUser(id: $id, name: $name, age: $age)
     }
-
-    OR
-
-    curl --request POST \
-      --header 'content-type: application/json' \
-      --url http://localhost:4000/ \
-      --data '{"query":"mutation UpdateUser($id: ID, $name: String, $age: Int) {\r\n  updateUser(id: $id, name: $name, age: $age)\r\n}","variables":{"id":"0","name":"Rick","age":77}}'
     ```
   - Delete
     ```
     mutation DeleteUser($id: ID) {
       deleteUser(id: $id)
     }
-
-    OR
-
-    curl --request POST \
-      --header 'content-type: application/json' \
-      --url http://localhost:4000/ \
-      --data '{"query":"mutation DeleteUser($id: ID) {\r\n  deleteUser(id: $id)\r\n}","variables":{"id":"0"}}'
     ```
