@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "apollo-datasource-rest": "^3.5.0",
     "apollo-server": "^3.6.1",
     "graphql": "^16.2.0"
   }
